@@ -16,3 +16,20 @@ d = {
 
 df = pd.DataFrame(d)
 print(f"DataFrame:\n{df}\n")
+
+# Reading a CSV file into a DataFrame
+# The CSV file should be in the same directory as this script or provide the full path to the file.
+df_dirty = pd.read_csv(
+    "./01-pandas-numpy/dirty_data.csv",
+    skipinitialspace=True,
+    na_values=["", " ", "NA", "NaN"],
+)
+
+df_dirty["Product"] = df_dirty["Product"].str.strip()
+df_dirty["Price"] = pd.to_numeric(df_dirty["Price"])
+df_dirty["Stock"] = pd.to_numeric(df_dirty["Stock"])
+
+df_dirty = df_dirty.fillna(0)
+
+
+print(f"Dirty DataFrame:\n{df_dirty}\n")
