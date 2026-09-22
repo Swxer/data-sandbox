@@ -10,7 +10,6 @@ df = pd.DataFrame(
 )
 
 df["Total_Value"] = df["Price"] * df["Quantity"]
-
 df["Tier"] = np.where(df["Total_Value"] > 500, "Premium", "Standard")
 
 print(df)
